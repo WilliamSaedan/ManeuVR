@@ -36,20 +36,5 @@ namespace Valve.VR.InteractionSystem
             transform.localPosition = new Vector3(head.localPosition.x, ((capsuleCollider[0].height / 2.0f)-capsuleCollider[0].center.y), head.localPosition.z);
 		}
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.GetComponentInParent<Interactable>() != null)
-            {
-                other.isTrigger = true;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.GetComponentInParent<Interactable>() != null && other.isTrigger)
-            {
-                other.isTrigger = false;
-            }
-        }
     }
 }

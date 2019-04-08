@@ -21,25 +21,40 @@ namespace Valve.VR
         
         public static Valve.VR.SteamVR_Input_ActionSet_platformer platformer;
         
-        public static Valve.VR.SteamVR_Input_ActionSet_buggy buggy;
+        public static Valve.VR.SteamVR_Input_ActionSet_teleportBall teleportBall;
+        
+        public static Valve.VR.SteamVR_Input_ActionSet_sliding sliding;
+        
+        public static Valve.VR.SteamVR_Input_ActionSet_pointFollow pointFollow;
+        
+        public static Valve.VR.SteamVR_Input_ActionSet_climbing climbing;
         
         public static void Dynamic_InitializeActionSets()
         {
             SteamVR_Input._default.Initialize();
             SteamVR_Input.platformer.Initialize();
-            SteamVR_Input.buggy.Initialize();
+            SteamVR_Input.teleportBall.Initialize();
+            SteamVR_Input.sliding.Initialize();
+            SteamVR_Input.pointFollow.Initialize();
+            SteamVR_Input.climbing.Initialize();
         }
         
         public static void Dynamic_InitializeInstanceActionSets()
         {
             Valve.VR.SteamVR_Input._default = ((SteamVR_Input_ActionSet_default)(SteamVR_Input_References.GetActionSet("_default")));
             Valve.VR.SteamVR_Input.platformer = ((SteamVR_Input_ActionSet_platformer)(SteamVR_Input_References.GetActionSet("platformer")));
-            Valve.VR.SteamVR_Input.buggy = ((SteamVR_Input_ActionSet_buggy)(SteamVR_Input_References.GetActionSet("buggy")));
+            Valve.VR.SteamVR_Input.teleportBall = ((SteamVR_Input_ActionSet_teleportBall)(SteamVR_Input_References.GetActionSet("teleportBall")));
+            Valve.VR.SteamVR_Input.sliding = ((SteamVR_Input_ActionSet_sliding)(SteamVR_Input_References.GetActionSet("sliding")));
+            Valve.VR.SteamVR_Input.pointFollow = ((SteamVR_Input_ActionSet_pointFollow)(SteamVR_Input_References.GetActionSet("pointFollow")));
+            Valve.VR.SteamVR_Input.climbing = ((SteamVR_Input_ActionSet_climbing)(SteamVR_Input_References.GetActionSet("climbing")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[]
             {
                     Valve.VR.SteamVR_Input._default,
                     Valve.VR.SteamVR_Input.platformer,
-                    Valve.VR.SteamVR_Input.buggy};
+                    Valve.VR.SteamVR_Input.teleportBall,
+                    Valve.VR.SteamVR_Input.sliding,
+                    Valve.VR.SteamVR_Input.pointFollow,
+                    Valve.VR.SteamVR_Input.climbing};
         }
     }
 }
