@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09434e31cbea6943acc22e941b84ee9, type: 3}
+  m_Name: SteamVR_Input_ActionSet_teleportBall_In
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 0}
+  listDirection: 0
+  actions:
+  - {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
+  - {fileID: 11400000, guid: 0f490487f6be6e047be9dedf9e068b19, type: 2}
+  Spawn: {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
+  Teleport: {fileID: 11400000, guid: 0f490487f6be6e047be9dedf9e068b19, type: 2}

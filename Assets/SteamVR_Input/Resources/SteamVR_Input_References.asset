@@ -15,11 +15,17 @@ MonoBehaviour:
   actionSetNames:
   - _default
   - platformer
-  - buggy
+  - teleportBall
+  - sliding
+  - pointFollow
+  - climbing
   actionSetObjects:
   - {fileID: 11400000, guid: 858d235d70a56d94383edce11cd23309, type: 2}
   - {fileID: 11400000, guid: 8773a77a198a33147b92e70aa4fb2bc9, type: 2}
-  - {fileID: 11400000, guid: e918ef4ce5adeef4ba8737f6c3f0daf0, type: 2}
+  - {fileID: 11400000, guid: e2030f08fa6dce84aab69263e9a1a3d2, type: 2}
+  - {fileID: 11400000, guid: 5897dd5d5f089994db4cb8b10b06820f, type: 2}
+  - {fileID: 11400000, guid: c700116fedf68f04cba1ea270e44ed91, type: 2}
+  - {fileID: 11400000, guid: 389eb4686c3403d48819941a8db78d2e, type: 2}
   actionNames:
   - __actions_default_in_InteractUI
   - __actions_default_in_Teleport
@@ -34,10 +40,12 @@ MonoBehaviour:
   - __actions_platformer_in_Move
   - __actions_platformer_in_Jump
   - __actions_platformer_in_GrabPinch
-  - __actions_buggy_in_Steering
-  - __actions_buggy_in_Throttle
-  - __actions_buggy_in_Brake
-  - __actions_buggy_in_Reset
+  - __actions_teleportBall_in_Spawn
+  - __actions_teleportBall_in_Teleport
+  - __actions_teleportBall_out_Haptic
+  - __actions_sliding_in_SlideAction
+  - __actions_pointFollow_in_PointAction
+  - __actions_climbing_in_ClimbingAction
   actionObjects:
   - {fileID: 11400000, guid: 14e43d410bb207f439072c75eefaaf44, type: 2}
   - {fileID: 11400000, guid: a3c5ea8bea220c644b4c452906e19b6d, type: 2}
@@ -52,7 +60,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a5a20ccbcaca23439a37ea30084223f, type: 2}
   - {fileID: 11400000, guid: f92e63c932cf06143b5b535e60974ace, type: 2}
   - {fileID: 11400000, guid: 7023b7aa7bec0824c9c7d73f35d51d29, type: 2}
-  - {fileID: 11400000, guid: aa4375b0c815ade4a9f72a4f46bc1353, type: 2}
-  - {fileID: 11400000, guid: 7adbbab05c97b6943b523ebddae26e1a, type: 2}
-  - {fileID: 11400000, guid: 2e3c7f609dc9a2e41b8dbf86b29c064e, type: 2}
-  - {fileID: 11400000, guid: 62b59c54793a2c84893b4c95e123fdf6, type: 2}
+  - {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
+  - {fileID: 11400000, guid: 0f490487f6be6e047be9dedf9e068b19, type: 2}
+  - {fileID: 11400000, guid: a70ea4fe1f62afe4ba648133519a79f1, type: 2}
+  - {fileID: 11400000, guid: 8110d2ba7e262d04f865756e2f3838a1, type: 2}
+  - {fileID: 11400000, guid: 8c8d43081168d7241bdddd28808c8baa, type: 2}
+  - {fileID: 11400000, guid: 3a5f881431b3f944a8c2946fd16aa27f, type: 2}

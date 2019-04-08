@@ -334,7 +334,7 @@ namespace Valve.VR.InteractionSystem
             attachedObject.attachmentFlags = flags;
             attachedObject.attachedOffsetTransform = attachmentOffset;
 
-            handCollider.isTrigger = true;
+            //handCollider.isTrigger = true;
 
             if (flags == 0)
             {
