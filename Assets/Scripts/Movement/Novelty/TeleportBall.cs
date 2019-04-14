@@ -30,13 +30,14 @@ public class TeleportBall : MonoBehaviour
         //throwHand = this.GetComponentInParent<Hand>();
     }
 
-    public void OnUpdate()
+    public void AssignController()
     {
-        throwHand = interactable.attachedToHand;
+        if (throwHand == null)
+            throwHand = interactable.attachedToHand;
     }
 
     // Update is called once per frame
-    public void OnPress()
+    public void OnPressDown()
     {
         if (!spawned)
         {
@@ -63,7 +64,7 @@ public class TeleportBall : MonoBehaviour
         }
 
         Vector3 initialScale = Vector3.one * 0.01f;
-        Vector3 targetScale = Vector3.one * 0.1f;
+        Vector3 targetScale = Vector3.one * 1f;
 
         spawned = true;
 
@@ -97,7 +98,7 @@ public class TeleportBall : MonoBehaviour
 
     private IEnumerator Despawn()
     {
-        Vector3 initialScale = Vector3.one * 0.1f;
+        Vector3 initialScale = Vector3.one * 1f;
         Vector3 targetScale = Vector3.one * 0.01f;
 
         float startTime = Time.time;

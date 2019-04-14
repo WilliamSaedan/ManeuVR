@@ -13,7 +13,6 @@ public class Sliding : MonoBehaviour
     private Vector3 handMotionRef;
 
     public float velocityAmplification = 1f;
-    public float maxVelocity = 1f;
 
     void OnEnable()
     {
@@ -28,20 +27,21 @@ public class Sliding : MonoBehaviour
 
     public void GetReferencePoint()
     {
-        hand = interactable.attachedToHand;
+        if (hand == null)
+            hand = interactable.attachedToHand;
         handMotionRef = hand.transform.localPosition;
     }
 
-    public void DuringPress()
+    public void OnPress()
     {
         playerBody.velocity = Vector3.zero;
         Vector3 deltaMovment = new Vector3((handMotionRef - hand.transform.localPosition).x, 0, (handMotionRef - hand.transform.localPosition).z) * velocityAmplification;
-        playerBody.transform.position += Vector3.ClampMagnitude(deltaMovment, maxVelocity);
+        playerBody.transform.position += deltaMovment;
     }
 
-    public void OnRelease()
+    public void OnPressUp()
     {
         playerBody.useGravity = true;
-        playerBody.velocity = Vector3.ClampMagnitude(playerVelocity.GetVelocityEstimate() * velocityAmplification, maxVelocity);
+        playerBody.velocity = playerVelocity.GetVelocityEstimate() * velocityAmplification;
     }
 }

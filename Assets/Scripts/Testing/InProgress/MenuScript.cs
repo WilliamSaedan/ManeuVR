@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class MenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    bool menuOpen = false;
+
+    public void onPress()
     {
-        
+        if (menuOpen)
+        {
+            StartCoroutine(DoOpen());
+        }
+        else
+        {
+            StartCoroutine(DoClose());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator DoOpen()
     {
-        
+        return null;
+    }
+
+    private IEnumerator DoClose()
+    {
+        return null;
     }
 }

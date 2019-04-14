@@ -22,7 +22,7 @@ namespace Valve.VR.InteractionSystem
         [Tooltip("Drop the object with this action (If null, object will be dropped on grab end)")]
         public SteamVR_Action_Boolean dropAction;
 
-        public bool denyGrabOnPickup = false;
+        public bool denyGrabOnAttach = false;
 
         [Tooltip("When detaching the object, should it return to its original parent?")]
         public bool restoreOriginalParent = false;
@@ -45,6 +45,10 @@ namespace Valve.VR.InteractionSystem
         //protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
         //protected new Rigidbody rigidbody;
+
+        private bool allowPickUp = true;
+        private ControllerCollider controllerCollider;
+
         [HideInInspector]
         public Interactable interactable;
         [HideInInspector]
@@ -71,6 +75,8 @@ namespace Valve.VR.InteractionSystem
                 interactable.handFollowTransform = attachmentOffset;
             }
 
+            controllerCollider = GetComponentInChildren<ControllerCollider>();
+
         }
 
 
@@ -86,7 +92,7 @@ namespace Valve.VR.InteractionSystem
             {
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
-                if (bestGrabType != GrabTypes.None)
+                if (bestGrabType != GrabTypes.None && allowPickUp && (hand.GetComponentInChildren<AlternativeController>() == null))
                 {
                     hand.AttachObject(gameObject, bestGrabType, attachmentFlags);
                     showHint = false;
@@ -112,7 +118,7 @@ namespace Valve.VR.InteractionSystem
         {
             GrabTypes startingGrabType = hand.GetGrabStarting();
 
-            if (startingGrabType != GrabTypes.None)
+            if (startingGrabType != GrabTypes.None && allowPickUp && (hand.GetComponentInChildren<AlternativeController>() == null))
             {
                 hand.AttachObject(gameObject, startingGrabType, attachmentFlags, attachmentOffset);
                 hand.HideGrabHint();
@@ -132,7 +138,7 @@ namespace Valve.VR.InteractionSystem
 
             onPickUp.Invoke();
 
-            if (denyGrabOnPickup)
+            if (denyGrabOnAttach)
             {
                 hand.HoverLock(null);
             }
@@ -162,7 +168,7 @@ namespace Valve.VR.InteractionSystem
 
             onDetachFromHand.Invoke();
 
-            if (denyGrabOnPickup)
+            if (denyGrabOnAttach)
             {
                 hand.HoverUnlock(null);
             }
@@ -211,7 +217,26 @@ namespace Valve.VR.InteractionSystem
             else if (dropAction != null && dropAction.GetStateDown(interactable.attachedToHand.handType))
             {
                 hand.DetachObject(gameObject, restoreOriginalParent);
+                StartCoroutine(grabDelay());
             }
+        }
+        private IEnumerator grabDelay()
+        {
+            allowPickUp = false;
+
+            yield return new WaitForSeconds(0.25f);
+
+            allowPickUp = true;
+        }
+
+        public void DenyPickUp()
+        {
+            allowPickUp = false;
+        }
+
+        public void AllowPickUp()
+        {
+            allowPickUp = true;
         }
     }
 }
