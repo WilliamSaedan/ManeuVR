@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-public class Climbing : MonoBehaviour
+
+public class Thruster : MonoBehaviour
 {
     private Player player;
     private Rigidbody playerBody;
     private VelocityEstimator playerVelocity;
     private Hand hand;
     private Interactable interactable;
-    private Vector3 handMotionRef;
+
+    public float playerSpeed = 100f;
+    public float terminalVelocity = Mathf.Infinity;
 
     void OnEnable()
     {
@@ -20,29 +23,26 @@ public class Climbing : MonoBehaviour
             playerBody = player.GetComponent<Rigidbody>();
         }
         playerVelocity = player.GetComponent<VelocityEstimator>();
-        //TEMPORARY
-        //hand = player.rightHand;
         interactable = this.GetComponentInParent<Interactable>();
+        float idealDrag = playerSpeed / terminalVelocity;
+        playerBody.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
     }
 
-    public void GetReferencePoint()
-    {
-        if (hand == null)
-            hand = interactable.attachedToHand;
-        handMotionRef = hand.transform.localPosition;
-    }
-
+    // Start is called before the first frame update
     public void OnPress()
     {
-        playerBody.useGravity = false;
-        playerBody.velocity = Vector3.zero;
-        //playerBody.transform.position = Vector3.MoveTowards(playerBody.transform.position , playerBody.transform.position + (handMotionRef - hand.transform.localPosition), 10f*Time.deltaTime);
-        playerBody.transform.position += handMotionRef - hand.transform.localPosition;
+        //playerBody.velocity = hand.transform.forward*playerSpeed;
+        playerBody.AddForce(hand.transform.forward*playerSpeed*Time.deltaTime,ForceMode.Impulse);
     }
 
     public void OnPressUp()
     {
-        playerBody.useGravity = true;
         playerBody.velocity = playerVelocity.GetVelocityEstimate();
+    }
+
+    public void AssignController()
+    {
+        if (hand == null)
+            hand = interactable.attachedToHand;
     }
 }

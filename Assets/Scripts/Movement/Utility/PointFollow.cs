@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
+//[RequireComponent(typeof(LineRenderer))]
+
 public class PointFollow : MonoBehaviour
 {
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(this.transform.position, -this.transform.right, Color.yellow);
+        Debug.DrawRay(this.transform.position, this.transform.up, Color.yellow);
     }
 
     private Player player;
@@ -20,8 +22,8 @@ public class PointFollow : MonoBehaviour
     private bool canMove = false;
     private bool moved = false;
 
-    public float playerSpeed = 1f;
-    public float maxDistance = 2f;
+    public float playerSpeed = 100f;
+    public float maxDistance = Mathf.Infinity;
 
     private RaycastHit hitInfo;
 
@@ -36,21 +38,21 @@ public class PointFollow : MonoBehaviour
         interactable = this.GetComponentInParent<Interactable>();
     }
 
-    public void GetReferencePoint()
+    public void OnPressDown()
     {
-        canMove = Physics.Raycast(this.transform.position - this.transform.right/4, -this.transform.right, out hitInfo, maxDistance);
+        canMove = Physics.Raycast(this.transform.position + this.transform.up/3, this.transform.up, out hitInfo, maxDistance);
     }
 
-    public void DuringPress()
+    public void OnPress()
     {
         if ( canMove )
         {
-            playerBody.velocity = Vector3.Normalize(hitInfo.point - this.transform.position) * playerSpeed;
+            playerBody.velocity = Vector3.Normalize(hitInfo.point - this.transform.position) * playerSpeed * Time.deltaTime;
             moved = false;
         }
     }
 
-    public void OnRelease()
+    public void OnPressUp()
     {
         if( moved )
         {
@@ -61,7 +63,8 @@ public class PointFollow : MonoBehaviour
 
     public void AssignController()
     {
-        hand = interactable.attachedToHand;
+        if (hand == null)
+            hand = interactable.attachedToHand;
     }
 
     private IEnumerator SlowSpeed()

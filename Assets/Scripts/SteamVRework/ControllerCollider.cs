@@ -5,7 +5,7 @@ using Valve.VR.InteractionSystem;
 
 public class ControllerCollider : MonoBehaviour
 {
-    private Collider physicsCollider;
+    private List<Collider> physicsCollider;
     //private GameObject touched;
     private Hand hand;
     private Hand otherHand;
@@ -14,18 +14,23 @@ public class ControllerCollider : MonoBehaviour
     private const int ColliderArraySize = 16;
     private Collider[] overlappingColliders;
 
+    public bool controllerCollision { get; private set; }
+
     private void Awake()
     {
         physicsCollider = GetNonTrigger();
         Debug.Log(physicsCollider);
         hand = Player.instance.rightHand;
         otherHand = hand.otherHand;
+        controllerCollision = false;
         overlappingColliders = new Collider[ColliderArraySize];
     }
 
-    protected virtual bool CollisionCandidacyCheck(Vector3 hoverPosition, float hoverRadius, ref float closestDistance, ref Interactable closestInteractable)
+    protected virtual bool CollisionCandidacyCheck(Vector3 hoverPosition, float hoverRadius)
     {
         bool turnOffCollision = false;
+
+        controllerCollision = false;
 
         // null out old vals
         for (int i = 0; i < overlappingColliders.Length; ++i)
@@ -43,18 +48,25 @@ public class ControllerCollider : MonoBehaviour
         for (int colliderIndex = 0; colliderIndex < overlappingColliders.Length; colliderIndex++)
         {
             Collider collider = overlappingColliders[colliderIndex];
+
             if (collider == null)
                 continue;
+
+            if (collider.GetComponentInParent<AlternativeController>() != null)
+            {
+                controllerCollision = true;
+            }
+
+            if (collider.tag == "PlayerCollider")
+            {
+                continue;
+            }
+
             //Debug.Log(collider);
             Interactable contacting = collider.GetComponentInParent<Interactable>();
             // Yeah, it's null, skip
             //Debug.Log(contacting);
             if (contacting == null)
-                continue;
-
-            Hand handCollider = collider.GetComponentInParent<Hand>();
-
-            if (handCollider != null)
                 continue;
 
             // Ignore this collider for hovering
@@ -73,12 +85,14 @@ public class ControllerCollider : MonoBehaviour
             {
                 //Debug.Log(hand.AttachedObjects[attachedIndex].attachedObject);
                 //Debug.Log(contacting.gameObject);
+
                 if (hand.AttachedObjects[attachedIndex].attachedObject == contacting.gameObject)
                 {
                     hoveringOverAttached = true;
                     break;
                 }
             }
+
             if (hoveringOverAttached)
                 turnOffCollision = true;
 
@@ -106,31 +120,42 @@ public class ControllerCollider : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        float closestDistance = float.MaxValue;
-        Interactable closestInteractable = null;
+        
 
-        if (CollisionCandidacyCheck(this.transform.position, collisionCheckRadius, ref closestDistance, ref closestInteractable))
+        if (CollisionCandidacyCheck(this.transform.position, collisionCheckRadius))
         {
-            physicsCollider.isTrigger = true;
+            foreach (Collider collider in physicsCollider) {
+                collider.isTrigger = true;
+            }
             //Debug.Log(other);
         }
         else
         {
-            physicsCollider.isTrigger = false;
-            //Debug.Log(physicsCollider);
+            foreach (Collider collider in physicsCollider)
+            {
+                collider.isTrigger = false;
+            }
+            Debug.Log("tt");
         }
 
     }
 
-    private Collider GetNonTrigger()
+    private List<Collider> GetNonTrigger()
     {
-        foreach (Collider col in this.GetComponents<Collider>())
+        List<Collider> colliderArray = new List<Collider>();
+        foreach (Collider collider in this.GetComponents<Collider>())
         {
-            if (!col.isTrigger)
+            if (!collider.isTrigger)
             {
-                return col;
+                colliderArray.Add(collider);
             }
         }
-        return null;
+        return colliderArray;
+    }
+
+    public bool IsCollidingWithController()
+    {
+        CollisionCandidacyCheck(this.transform.position, collisionCheckRadius);
+        return controllerCollision;
     }
 }

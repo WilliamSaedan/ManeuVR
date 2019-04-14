@@ -310,7 +310,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void UpdatePointer()
 		{
-			Vector3 pointerStart = pointerStartTransform.position;
+			Vector3 pointerStart = pointerStartTransform.position + pointerStartTransform.forward/8;
 			Vector3 pointerEnd;
 			Vector3 pointerDir = pointerStartTransform.forward;
 			bool hitSomething = false;

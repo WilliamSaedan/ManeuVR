@@ -106,11 +106,11 @@ namespace Valve.VR.InteractionSystem
 
             if (CollisionCandidacyCheck(this.transform.position, collisionCheckRadius, ref closestDistance, ref closestInteractable))
             {
-                physicsCollider.isTrigger = true;
+                //physicsCollider.isTrigger = true;
             }
             else
             {
-                physicsCollider.isTrigger = false;
+                //physicsCollider.isTrigger = false;
             }
         }
 

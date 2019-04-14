@@ -60,6 +60,8 @@ namespace Valve.VR.InteractionSystem
         
         protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
+        private bool allowPickUp = true;
+
         protected new Rigidbody rigidbody;
         [HideInInspector]
         public Interactable interactable;
@@ -105,7 +107,7 @@ namespace Valve.VR.InteractionSystem
 
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
-                if ( bestGrabType != GrabTypes.None )
+                if ( bestGrabType != GrabTypes.None && allowPickUp)
 				{
 					if (rigidbody.velocity.magnitude >= catchingThreshold)
 					{
@@ -134,7 +136,7 @@ namespace Valve.VR.InteractionSystem
         {
             GrabTypes startingGrabType = hand.GetGrabStarting();
             
-            if (startingGrabType != GrabTypes.None)
+            if (startingGrabType != GrabTypes.None && allowPickUp)
             {
 				hand.AttachObject( gameObject, startingGrabType, attachmentFlags, attachmentOffset );
                 hand.HideGrabHint();
@@ -283,7 +285,16 @@ namespace Valve.VR.InteractionSystem
 			gameObject.SetActive( false );
 			velocityEstimator.FinishEstimatingVelocity();
 		}
-	}
+
+        private IEnumerator grabDelay()
+        {
+            allowPickUp = false;
+
+            yield return new WaitForSeconds(0.25f);
+
+            allowPickUp = true;
+        }
+    }
 
     public enum ReleaseStyle
     {
