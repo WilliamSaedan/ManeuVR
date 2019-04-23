@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3569242634554814464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989306577605738997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde09fcc6a36bdc488273ef59dea81ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 100
+  touchAction: {fileID: 11400000, guid: ebda4c2f631d2914da5b7ac20c57deaa, type: 2}
+--- !u!114 &7957892654836013194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989306577605738997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882e9db3ae3cfdf4793461eada0f54b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vector2Action: {fileID: 11400000, guid: ebda4c2f631d2914da5b7ac20c57deaa, type: 2}
+  inputSource: 0
+  onChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3569242634554814464}
+        m_MethodName: AssignController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3569242634554814464}
+        m_MethodName: OnChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Valve.VR.SteamVR_Behaviour_Vector2Event, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!1001 &691756139259126822
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4523093665584212352, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_Name
+      value: TouchPadController Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665583789472, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523093665584212363, guid: 8b4a3facee7c38348b80f91318a51439,
+        type: 3}
+      propertyPath: activateActionSetOnAttach
+      value: 
+      objectReference: {fileID: 11400000, guid: ab79099b621b5e542ae7ff9b509e8b20,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 4523093663956182481, guid: 8b4a3facee7c38348b80f91318a51439, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 8b4a3facee7c38348b80f91318a51439, type: 3}
+--- !u!1 &3989306577605738997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4523093663956182483, guid: 8b4a3facee7c38348b80f91318a51439,
+    type: 3}
+  m_PrefabInstance: {fileID: 691756139259126822}
+  m_PrefabAsset: {fileID: 0}

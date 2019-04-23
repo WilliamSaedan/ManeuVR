@@ -27,7 +27,11 @@ namespace Valve.VR
         
         public static Valve.VR.SteamVR_Input_ActionSet_pointFollow pointFollow;
         
+        public static Valve.VR.SteamVR_Input_ActionSet_thruster thruster;
+        
         public static Valve.VR.SteamVR_Input_ActionSet_climbing climbing;
+        
+        public static Valve.VR.SteamVR_Input_ActionSet_touchpad touchpad;
         
         public static void Dynamic_InitializeActionSets()
         {
@@ -36,7 +40,9 @@ namespace Valve.VR
             SteamVR_Input.teleportBall.Initialize();
             SteamVR_Input.sliding.Initialize();
             SteamVR_Input.pointFollow.Initialize();
+            SteamVR_Input.thruster.Initialize();
             SteamVR_Input.climbing.Initialize();
+            SteamVR_Input.touchpad.Initialize();
         }
         
         public static void Dynamic_InitializeInstanceActionSets()
@@ -46,7 +52,9 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.teleportBall = ((SteamVR_Input_ActionSet_teleportBall)(SteamVR_Input_References.GetActionSet("teleportBall")));
             Valve.VR.SteamVR_Input.sliding = ((SteamVR_Input_ActionSet_sliding)(SteamVR_Input_References.GetActionSet("sliding")));
             Valve.VR.SteamVR_Input.pointFollow = ((SteamVR_Input_ActionSet_pointFollow)(SteamVR_Input_References.GetActionSet("pointFollow")));
+            Valve.VR.SteamVR_Input.thruster = ((SteamVR_Input_ActionSet_thruster)(SteamVR_Input_References.GetActionSet("thruster")));
             Valve.VR.SteamVR_Input.climbing = ((SteamVR_Input_ActionSet_climbing)(SteamVR_Input_References.GetActionSet("climbing")));
+            Valve.VR.SteamVR_Input.touchpad = ((SteamVR_Input_ActionSet_touchpad)(SteamVR_Input_References.GetActionSet("touchpad")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[]
             {
                     Valve.VR.SteamVR_Input._default,
@@ -54,7 +62,9 @@ namespace Valve.VR
                     Valve.VR.SteamVR_Input.teleportBall,
                     Valve.VR.SteamVR_Input.sliding,
                     Valve.VR.SteamVR_Input.pointFollow,
-                    Valve.VR.SteamVR_Input.climbing};
+                    Valve.VR.SteamVR_Input.thruster,
+                    Valve.VR.SteamVR_Input.climbing,
+                    Valve.VR.SteamVR_Input.touchpad};
         }
     }
 }

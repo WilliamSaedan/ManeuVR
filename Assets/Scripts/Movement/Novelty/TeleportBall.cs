@@ -39,13 +39,15 @@ public class TeleportBall : MonoBehaviour
     // Update is called once per frame
     public void OnPressDown()
     {
-        if (!spawned)
-        {
-            StartCoroutine(DoSpawn());
-        }
-        else
-        {
-            StartCoroutine(Despawn());
+        if (interactable.attachedToHand) {
+            if (!spawned)
+            {
+                StartCoroutine(DoSpawn());
+            }
+            else
+            {
+                StartCoroutine(Despawn());
+            }
         }
     }
 
@@ -53,7 +55,7 @@ public class TeleportBall : MonoBehaviour
     {
         Vector3 spawnLoc = (player.hmdTransform.transform.forward/(1/spawnDistance));
         RaycastHit hitInfo;
-        teleportSphere = GameObject.Instantiate<GameObject>(Resources.Load("Items/TeleportBall") as GameObject);
+        teleportSphere = GameObject.Instantiate<GameObject>(Resources.Load("Items/Spawnable/TeleportBall") as GameObject);
         if (Physics.Raycast((player.hmdTransform.transform.position) + (player.hmdTransform.transform.forward / 8), spawnLoc, out hitInfo, spawnDistance))
         {
             teleportSphere.transform.position = hitInfo.point;
@@ -71,13 +73,13 @@ public class TeleportBall : MonoBehaviour
         float startTime = Time.time;
         float overTime = 0.25f;
         float endTime = startTime + overTime;
-        throwHand.TriggerHapticPulse(10000);
+        //throwHand.TriggerHapticPulse(10000);
         while (Time.time < endTime)
         {
             teleportSphere.transform.localScale = Vector3.Slerp(initialScale, targetScale, (Time.time - startTime) / overTime);
             yield return null;
         }
-        throwHand.TriggerHapticPulse(20000);
+        //throwHand.TriggerHapticPulse(20000);
     }
 
     public void Teleport()
@@ -88,10 +90,6 @@ public class TeleportBall : MonoBehaviour
             if (matchBallVelocity)
                 playerBody.velocity = teleportSphere.GetComponent<VelocityEstimator>().GetVelocityEstimate() * ballVelocityMatchRate;
             StartCoroutine(Despawn());
-        }
-        else
-        {
-            throwHand.TriggerHapticPulse(2500);
         }
 
     }
@@ -112,7 +110,7 @@ public class TeleportBall : MonoBehaviour
             teleportSphere.transform.localScale = Vector3.Slerp(initialScale, targetScale, (Time.time - startTime) / overTime);
             yield return null;
         }
-        throwHand.TriggerHapticPulse(3000);
+        //throwHand.TriggerHapticPulse(3000);
         Destroy(teleportSphere);
     }
 
