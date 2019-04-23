@@ -18,7 +18,5 @@ namespace Valve.VR
     {
         
         public SteamVR_Input_ActionSet_teleportBall_In inActions;
-        
-        public SteamVR_Input_ActionSet_teleportBall_Out outActions;
     }
 }

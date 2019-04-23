@@ -18,14 +18,18 @@ MonoBehaviour:
   - teleportBall
   - sliding
   - pointFollow
+  - thruster
   - climbing
+  - touchpad
   actionSetObjects:
   - {fileID: 11400000, guid: 858d235d70a56d94383edce11cd23309, type: 2}
   - {fileID: 11400000, guid: 8773a77a198a33147b92e70aa4fb2bc9, type: 2}
   - {fileID: 11400000, guid: e2030f08fa6dce84aab69263e9a1a3d2, type: 2}
   - {fileID: 11400000, guid: 5897dd5d5f089994db4cb8b10b06820f, type: 2}
   - {fileID: 11400000, guid: c700116fedf68f04cba1ea270e44ed91, type: 2}
-  - {fileID: 11400000, guid: 389eb4686c3403d48819941a8db78d2e, type: 2}
+  - {fileID: 11400000, guid: 28b6ddb6dad127c4f8de2e9a1838fcd2, type: 2}
+  - {fileID: 11400000, guid: b0121d0d8d59d7e4a8c8d0cea1c1bbb3, type: 2}
+  - {fileID: 11400000, guid: ab79099b621b5e542ae7ff9b509e8b20, type: 2}
   actionNames:
   - __actions_default_in_InteractUI
   - __actions_default_in_Teleport
@@ -36,16 +40,18 @@ MonoBehaviour:
   - __actions_default_in_SkeletonRightHand
   - __actions_default_in_Squeeze
   - __actions_default_in_Spawn
+  - __actions_default_in_Detach
   - __actions_default_out_Haptic
   - __actions_platformer_in_Move
   - __actions_platformer_in_Jump
   - __actions_platformer_in_GrabPinch
   - __actions_teleportBall_in_Spawn
   - __actions_teleportBall_in_Teleport
-  - __actions_teleportBall_out_Haptic
   - __actions_sliding_in_SlideAction
   - __actions_pointFollow_in_PointAction
-  - __actions_climbing_in_ClimbingAction
+  - __actions_thruster_in_Boost
+  - __actions_climbing_in_ClimbAction
+  - __actions_touchpad_in_TouchAction
   actionObjects:
   - {fileID: 11400000, guid: 14e43d410bb207f439072c75eefaaf44, type: 2}
   - {fileID: 11400000, guid: a3c5ea8bea220c644b4c452906e19b6d, type: 2}
@@ -56,13 +62,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f62bd0de978e6144597e607dfa1822f1, type: 2}
   - {fileID: 11400000, guid: 74943fde07756484c9f5dd1182d0eaff, type: 2}
   - {fileID: 11400000, guid: 586848ee910a5b3449ee336726cf6b85, type: 2}
+  - {fileID: 11400000, guid: 0d5f8d56c9aa1744ab7cda4e55c22b6b, type: 2}
   - {fileID: 11400000, guid: 82214b564a1f25442a00ce54009b6ebc, type: 2}
   - {fileID: 11400000, guid: 8a5a20ccbcaca23439a37ea30084223f, type: 2}
   - {fileID: 11400000, guid: f92e63c932cf06143b5b535e60974ace, type: 2}
   - {fileID: 11400000, guid: 7023b7aa7bec0824c9c7d73f35d51d29, type: 2}
   - {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
   - {fileID: 11400000, guid: 0f490487f6be6e047be9dedf9e068b19, type: 2}
-  - {fileID: 11400000, guid: a70ea4fe1f62afe4ba648133519a79f1, type: 2}
   - {fileID: 11400000, guid: 8110d2ba7e262d04f865756e2f3838a1, type: 2}
   - {fileID: 11400000, guid: 8c8d43081168d7241bdddd28808c8baa, type: 2}
-  - {fileID: 11400000, guid: 3a5f881431b3f944a8c2946fd16aa27f, type: 2}
+  - {fileID: 11400000, guid: 7ff3de56f1042b2458d9f47b80c36035, type: 2}
+  - {fileID: 11400000, guid: 3c170a8ae3be74346b1c64d617a95577, type: 2}
+  - {fileID: 11400000, guid: ebda4c2f631d2914da5b7ac20c57deaa, type: 2}

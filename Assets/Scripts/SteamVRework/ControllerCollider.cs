@@ -19,7 +19,6 @@ public class ControllerCollider : MonoBehaviour
     private void Awake()
     {
         physicsCollider = GetNonTrigger();
-        Debug.Log(physicsCollider);
         hand = Player.instance.rightHand;
         otherHand = hand.otherHand;
         controllerCollision = false;
@@ -135,7 +134,6 @@ public class ControllerCollider : MonoBehaviour
             {
                 collider.isTrigger = false;
             }
-            Debug.Log("tt");
         }
 
     }

@@ -27,22 +27,31 @@ public class Climbing : MonoBehaviour
 
     public void GetReferencePoint()
     {
-        if (hand == null)
-            hand = interactable.attachedToHand;
-        handMotionRef = hand.transform.localPosition;
+        if (interactable.attachedToHand)
+        {
+            if (hand == null)
+                hand = interactable.attachedToHand;
+            handMotionRef = hand.transform.localPosition;
+        }
     }
 
     public void OnPress()
     {
-        playerBody.useGravity = false;
-        playerBody.velocity = Vector3.zero;
-        //playerBody.transform.position = Vector3.MoveTowards(playerBody.transform.position , playerBody.transform.position + (handMotionRef - hand.transform.localPosition), 10f*Time.deltaTime);
-        playerBody.transform.position += handMotionRef - hand.transform.localPosition;
+        if (interactable.attachedToHand)
+        {
+            playerBody.useGravity = false;
+            playerBody.velocity = Vector3.zero;
+            //playerBody.transform.position = Vector3.MoveTowards(playerBody.transform.position , playerBody.transform.position + (handMotionRef - hand.transform.localPosition), 10f*Time.deltaTime);
+            playerBody.transform.position += handMotionRef - hand.transform.localPosition;
+        }
     }
 
     public void OnPressUp()
     {
-        playerBody.useGravity = true;
-        playerBody.velocity = playerVelocity.GetVelocityEstimate();
+        if (interactable.attachedToHand)
+        {
+            playerBody.useGravity = true;
+            playerBody.velocity = playerVelocity.GetVelocityEstimate();
+        }
     }
 }

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 38f9132cba486094cb2ebb1882b26fe3, type: 3}
   m_Name: SteamVR_Input_ActionSet_climbing_In
-  m_EditorClassIdentifier: Assembly-CSharp:Valve.VR:SteamVR_Input_ActionSet_climbing_In
-  actionSet: {fileID: 11400000, guid: 389eb4686c3403d48819941a8db78d2e, type: 2}
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 0}
   listDirection: 0
   actions:
-  - {fileID: 11400000, guid: 3a5f881431b3f944a8c2946fd16aa27f, type: 2}
-  ClimbingAction: {fileID: 11400000, guid: 3a5f881431b3f944a8c2946fd16aa27f, type: 2}
+  - {fileID: 11400000, guid: 3c170a8ae3be74346b1c64d617a95577, type: 2}
+  ClimbAction: {fileID: 11400000, guid: 3c170a8ae3be74346b1c64d617a95577, type: 2}

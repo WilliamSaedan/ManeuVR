@@ -15,16 +15,13 @@ MonoBehaviour:
   allActions:
   - {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
   - {fileID: 11400000, guid: 0f490487f6be6e047be9dedf9e068b19, type: 2}
-  - {fileID: 11400000, guid: a70ea4fe1f62afe4ba648133519a79f1, type: 2}
   nonVisualInActions:
   - {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
   - {fileID: 11400000, guid: 0f490487f6be6e047be9dedf9e068b19, type: 2}
   visualActions: []
   poseActions: []
   skeletonActions: []
-  outActionArray:
-  - {fileID: 11400000, guid: a70ea4fe1f62afe4ba648133519a79f1, type: 2}
+  outActionArray: []
   fullPath: /actions/teleportBall
   usage: single
   inActions: {fileID: 11400000, guid: befcb1ad8db53c44993db5d72006a1dc, type: 2}
-  outActions: {fileID: 11400000, guid: 2a3749affef1f994ba0c8c8e90a319ef, type: 2}

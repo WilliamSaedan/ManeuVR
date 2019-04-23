@@ -79,7 +79,7 @@ namespace Valve.VR.InteractionSystem
         public float noSteamVRFallbackMaxDistanceWithItem = 0.5f;
         private float noSteamVRFallbackInteractorDistance = -1.0f;
 
-        public Collider handCollider;
+        //public Collider handCollider;
 
         public GameObject renderModelPrefab;
         protected List<RenderModel> renderModels = new List<RenderModel>();
@@ -691,9 +691,9 @@ namespace Valve.VR.InteractionSystem
 
             if (objectAttachmentPoint == null)
                 objectAttachmentPoint = this.transform;
-
-            if (handCollider == null)
-                handCollider = GetComponent<BoxCollider>();
+            
+            //if (handCollider == null)
+            //    handCollider = GetComponent<BoxCollider>();
 
             applicationLostFocusObject = new GameObject("_application_lost_focus");
             applicationLostFocusObject.transform.parent = transform;
@@ -1337,7 +1337,6 @@ namespace Valve.VR.InteractionSystem
             if(hadOldRendermodel)
                 oldRM_rom = mainRenderModel.GetSkeletonRangeOfMotion;
 
-
             foreach (RenderModel r in renderModels)
             {
                 if (r != null)
@@ -1345,6 +1344,7 @@ namespace Valve.VR.InteractionSystem
             }
 
             renderModels.Clear();
+
 
             GameObject renderModelInstance = GameObject.Instantiate(renderModelPrefab);
             renderModelInstance.layer = gameObject.layer;
@@ -1355,11 +1355,12 @@ namespace Valve.VR.InteractionSystem
             renderModelInstance.transform.localScale = renderModelPrefab.transform.localScale;
 
             //TriggerHapticPulse(800);  //pulse on controller init
-
             int deviceIndex = trackedObject.GetDeviceIndex();
 
             mainRenderModel = renderModelInstance.GetComponent<RenderModel>();
             renderModels.Add(mainRenderModel);
+
+            
 
             if (hadOldRendermodel)
                 mainRenderModel.SetSkeletonRangeOfMotion(oldRM_rom);

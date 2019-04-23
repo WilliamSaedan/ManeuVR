@@ -27,21 +27,30 @@ public class Sliding : MonoBehaviour
 
     public void GetReferencePoint()
     {
-        if (hand == null)
-            hand = interactable.attachedToHand;
-        handMotionRef = hand.transform.localPosition;
+        if (interactable.attachedToHand)
+        {
+            if (hand == null)
+                hand = interactable.attachedToHand;
+            handMotionRef = hand.transform.localPosition;
+        }
     }
 
     public void OnPress()
     {
-        playerBody.velocity = Vector3.zero;
-        Vector3 deltaMovment = new Vector3((handMotionRef - hand.transform.localPosition).x, 0, (handMotionRef - hand.transform.localPosition).z) * velocityAmplification;
-        playerBody.transform.position += deltaMovment;
+        if (interactable.attachedToHand)
+        {
+            playerBody.velocity = Vector3.zero;
+            Vector3 deltaMovment = new Vector3((handMotionRef - hand.transform.localPosition).x, 0, (handMotionRef - hand.transform.localPosition).z) * velocityAmplification;
+            playerBody.transform.position += deltaMovment;
+        }
     }
 
     public void OnPressUp()
     {
-        playerBody.useGravity = true;
-        playerBody.velocity = playerVelocity.GetVelocityEstimate() * velocityAmplification;
+        if (interactable.attachedToHand)
+        {
+            playerBody.useGravity = true;
+            playerBody.velocity = playerVelocity.GetVelocityEstimate() * velocityAmplification;
+        }
     }
 }
