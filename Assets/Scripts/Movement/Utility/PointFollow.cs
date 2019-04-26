@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -21,6 +22,7 @@ public class PointFollow : MonoBehaviour
     private bool canMove = false;
     private bool moved = false;
     private LineRenderer line;
+    private SteamVR_Behaviour_Boolean caller;
 
     public float playerSpeed = 100f;
     public float maxDistance = Mathf.Infinity;
@@ -35,6 +37,7 @@ public class PointFollow : MonoBehaviour
             playerBody = player.GetComponent<Rigidbody>();
         }
         interactable = this.GetComponentInParent<Interactable>();
+        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
         line = this.GetComponent<LineRenderer>();
         line.enabled = false;
         Vector3 endpoint = maxDistance > 100f ? Vector3.up * 100f : Vector3.up * maxDistance;
@@ -75,8 +78,11 @@ public class PointFollow : MonoBehaviour
 
     public void AssignController()
     {
-        if (hand == null)
+        if (hand == null || hand != interactable.attachedToHand)
+        {
             hand = interactable.attachedToHand;
+        }
+        //caller.ChangeInputSource(hand.handType);
     }
 
     private IEnumerator SlowSpeed()

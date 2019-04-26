@@ -10,6 +10,7 @@ public class TrackPad : MonoBehaviour
     private Rigidbody playerBody;
     private Hand hand;
     private Interactable interactable;
+    private SteamVR_Behaviour_Vector2 caller;
 
     public float playerSpeed = 100f;
     public SteamVR_Action_Vector2 touchAction;
@@ -19,6 +20,7 @@ public class TrackPad : MonoBehaviour
     {
         player = Player.instance;
         interactable = this.GetComponentInParent<Interactable>();
+        caller = this.GetComponent<SteamVR_Behaviour_Vector2>();
         if (playerBody == null)
         {
             playerBody = player.GetComponent<Rigidbody>();
@@ -38,7 +40,10 @@ public class TrackPad : MonoBehaviour
 
     public void AssignController()
     {
-        if (hand == null)
+        if (hand == null || hand != interactable.attachedToHand)
+        {
             hand = interactable.attachedToHand;
+        }
+        //caller.ChangeInputSource(hand.handType);
     }
 }

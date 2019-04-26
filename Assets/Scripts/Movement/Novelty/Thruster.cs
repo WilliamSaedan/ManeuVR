@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 
@@ -11,6 +12,7 @@ public class Thruster : MonoBehaviour
     private VelocityEstimator playerVelocity;
     private Hand hand;
     private Interactable interactable;
+    private SteamVR_Behaviour_Boolean caller;
 
     public float playerSpeed = 100f;
     public float terminalVelocity = Mathf.Infinity;
@@ -22,9 +24,11 @@ public class Thruster : MonoBehaviour
         if (playerBody == null)
         {
             playerBody = player.GetComponent<Rigidbody>();
+            
         }
         playerVelocity = player.GetComponent<VelocityEstimator>();
         interactable = this.GetComponentInParent<Interactable>();
+        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
         float idealDrag = playerSpeed / terminalVelocity;
         playerBody.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
         //hand = player.rightHand;
@@ -61,6 +65,9 @@ public class Thruster : MonoBehaviour
     public void AssignController()
     {
         if (hand == null)
+        {
             hand = interactable.attachedToHand;
+        }
+        //caller.ChangeInputSource(hand.handType);
     }
 }

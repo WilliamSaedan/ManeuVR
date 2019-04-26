@@ -40,6 +40,13 @@ namespace Valve.VR
             singleAction.RemoveOnChangeListener(ActionChanged, inputSource);
         }
 
+        public void ChangeInputSource(SteamVR_Input_Sources newInputSource)
+        {
+            singleAction.RemoveOnUpdateListener(ActionChanged, inputSource);
+
+            singleAction.AddOnUpdateListener(ActionChanged, newInputSource);
+        }
+
         private void ActionChanged(SteamVR_Action_In action)
         {
             if (onChange != null)

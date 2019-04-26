@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 public class Sliding : MonoBehaviour
@@ -11,6 +12,7 @@ public class Sliding : MonoBehaviour
     private Hand hand;
     private Interactable interactable;
     private Vector3 handMotionRef;
+    private SteamVR_Behaviour_Boolean caller;
 
     public float velocityAmplification = 1f;
 
@@ -23,6 +25,7 @@ public class Sliding : MonoBehaviour
         }
         playerVelocity = player.GetComponent<VelocityEstimator>();
         interactable = this.GetComponentInParent<Interactable>();
+        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
     }
 
     public void GetReferencePoint()
@@ -30,7 +33,10 @@ public class Sliding : MonoBehaviour
         if (interactable.attachedToHand)
         {
             if (hand == null)
+            {
                 hand = interactable.attachedToHand;
+            }
+            //caller.ChangeInputSource(hand.handType);
             handMotionRef = hand.transform.localPosition;
         }
     }

@@ -51,6 +51,12 @@ namespace Valve.VR
             booleanAction.RemoveOnUpdateListener(ActionUpdated, inputSource);
         }
 
+        public void ChangeInputSource(SteamVR_Input_Sources newInputSource)
+        {
+            booleanAction.RemoveOnUpdateListener(ActionUpdated, inputSource);
+
+            booleanAction.AddOnUpdateListener(ActionUpdated, newInputSource);
+        }
 
         protected virtual void ActionUpdated(SteamVR_Action_In action)
         {

@@ -20,6 +20,8 @@ public class MenuScript : MonoBehaviour
         {
             playerBody = player.GetComponent<Rigidbody>();
         }
+        menu = GameObject.Instantiate<GameObject>(Resources.Load("Items/Menu/Menu") as GameObject);
+        menu.SetActive(false);
     }
 
     public void onPressDown()
@@ -36,7 +38,7 @@ public class MenuScript : MonoBehaviour
 
     private IEnumerator DoOpen()
     {
-        menu = GameObject.Instantiate<GameObject>(Resources.Load("Items/Menu/Menu") as GameObject);
+        menu.SetActive(true);
         if (!Physics.Raycast(player.transform.position + player.transform.up / 8, player.transform.position + player.transform.up))
         {
             menu.transform.position = player.hmdTransform.transform.position + Vector3.up * 10;
@@ -99,7 +101,7 @@ public class MenuScript : MonoBehaviour
             yield return null;
         }
 
-        Destroy(menu);
+        menu.SetActive(false);
         menuOpen = false;
     }
 

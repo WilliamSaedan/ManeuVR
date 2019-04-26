@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 public class Climbing : MonoBehaviour
@@ -11,6 +12,7 @@ public class Climbing : MonoBehaviour
     private Hand hand;
     private Interactable interactable;
     private Vector3 handMotionRef;
+    private SteamVR_Behaviour_Boolean caller;
 
     void OnEnable()
     {
@@ -20,8 +22,7 @@ public class Climbing : MonoBehaviour
             playerBody = player.GetComponent<Rigidbody>();
         }
         playerVelocity = player.GetComponent<VelocityEstimator>();
-        //TEMPORARY
-        //hand = player.rightHand;
+        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
         interactable = this.GetComponentInParent<Interactable>();
     }
 
@@ -30,7 +31,10 @@ public class Climbing : MonoBehaviour
         if (interactable.attachedToHand)
         {
             if (hand == null)
+            {
                 hand = interactable.attachedToHand;
+            }
+            //caller.ChangeInputSource(hand.handType);
             handMotionRef = hand.transform.localPosition;
         }
     }
@@ -41,7 +45,6 @@ public class Climbing : MonoBehaviour
         {
             playerBody.useGravity = false;
             playerBody.velocity = Vector3.zero;
-            //playerBody.transform.position = Vector3.MoveTowards(playerBody.transform.position , playerBody.transform.position + (handMotionRef - hand.transform.localPosition), 10f*Time.deltaTime);
             playerBody.transform.position += handMotionRef - hand.transform.localPosition;
         }
     }

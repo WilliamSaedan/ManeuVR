@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 8c8d43081168d7241bdddd28808c8baa, type: 2}
-  inputSource: 0
+  inputSource: 2
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -265,13 +265,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156787735}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16a9b39235339104889bf8e9178fc630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 8c8d43081168d7241bdddd28808c8baa, type: 2}
-  inputSource: 0
+  inputSource: 1
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vector2Action: {fileID: 11400000, guid: ebda4c2f631d2914da5b7ac20c57deaa, type: 2}
-  inputSource: 0
+  inputSource: 1
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
-  inputSource: 0
+  inputSource: 1
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vector2Action: {fileID: 11400000, guid: ebda4c2f631d2914da5b7ac20c57deaa, type: 2}
-  inputSource: 0
+  inputSource: 2
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -1117,7 +1117,7 @@ MeshCollider:
   m_GameObject: {fileID: 168668784615501436}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -3141,7 +3141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 7ff3de56f1042b2458d9f47b80c36035, type: 2}
-  inputSource: 0
+  inputSource: 1
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -3181,12 +3181,34 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   onPressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7141551841215423110}
+        m_MethodName: OnPressDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Valve.VR.SteamVR_Behaviour_BooleanEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onPressUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7141551841215423110}
+        m_MethodName: OnPressUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Valve.VR.SteamVR_Behaviour_BooleanEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &7141551841215423110
@@ -3201,7 +3223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b0b10dd6a5e3e408e97afdc5052af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 100
+  playerSpeed: 500
   terminalVelocity: Infinity
   flame: {fileID: 127557073070396953}
 --- !u!1 &1403466376761148265
@@ -4734,7 +4756,7 @@ MonoBehaviour:
   attachmentFlags: 136
   attachmentOffset: {fileID: 0}
   detachOnGrabLeave: 0
-  dropAction: {fileID: 11400000, guid: 889fa3b4b464c144eabdde765ca6154c, type: 2}
+  dropAction: {fileID: 11400000, guid: 0d5f8d56c9aa1744ab7cda4e55c22b6b, type: 2}
   denyGrabOnAttach: 0
   restoreOriginalParent: 0
   attachEaseIn: 1
@@ -6098,7 +6120,7 @@ MonoBehaviour:
   attachmentFlags: 136
   attachmentOffset: {fileID: 0}
   detachOnGrabLeave: 0
-  dropAction: {fileID: 11400000, guid: 889fa3b4b464c144eabdde765ca6154c, type: 2}
+  dropAction: {fileID: 11400000, guid: 0d5f8d56c9aa1744ab7cda4e55c22b6b, type: 2}
   denyGrabOnAttach: 0
   restoreOriginalParent: 0
   attachEaseIn: 1
@@ -8347,7 +8369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 8110d2ba7e262d04f865756e2f3838a1, type: 2}
-  inputSource: 0
+  inputSource: 2
   onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -10036,7 +10058,7 @@ GameObject:
   - component: {fileID: 5312699658779515178}
   - component: {fileID: 6811721047386808445}
   m_Layer: 0
-  m_Name: Column (3)
+  m_Name: Sliding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11046,7 +11068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 7ff3de56f1042b2458d9f47b80c36035, type: 2}
-  inputSource: 0
+  inputSource: 2
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -11253,7 +11275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 8110d2ba7e262d04f865756e2f3838a1, type: 2}
-  inputSource: 0
+  inputSource: 1
   onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -11569,7 +11591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 3c170a8ae3be74346b1c64d617a95577, type: 2}
-  inputSource: 0
+  inputSource: 1
   onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -11799,7 +11821,7 @@ MeshCollider:
   m_GameObject: {fileID: 5280144109264668602}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -11845,7 +11867,7 @@ GameObject:
   - component: {fileID: 318091937390680811}
   - component: {fileID: 3045675775203077185}
   m_Layer: 0
-  m_Name: Column (5)
+  m_Name: TeleportBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12559,7 +12581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: 3c170a8ae3be74346b1c64d617a95577, type: 2}
-  inputSource: 0
+  inputSource: 2
   onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -13029,7 +13051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   booleanAction: {fileID: 11400000, guid: e2c4acb8bbb9e7c4dac99cd69943aea6, type: 2}
-  inputSource: 0
+  inputSource: 2
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -13336,7 +13358,7 @@ GameObject:
   - component: {fileID: 6115951234593094558}
   - component: {fileID: 8448944076563846641}
   m_Layer: 0
-  m_Name: Column (2)
+  m_Name: Climbing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14701,7 +14723,7 @@ MonoBehaviour:
   attachmentFlags: 136
   attachmentOffset: {fileID: 0}
   detachOnGrabLeave: 0
-  dropAction: {fileID: 11400000, guid: 889fa3b4b464c144eabdde765ca6154c, type: 2}
+  dropAction: {fileID: 11400000, guid: 0d5f8d56c9aa1744ab7cda4e55c22b6b, type: 2}
   denyGrabOnAttach: 0
   restoreOriginalParent: 0
   attachEaseIn: 1
@@ -16334,7 +16356,7 @@ GameObject:
   - component: {fileID: 6857278313530025897}
   - component: {fileID: 3119341258967022510}
   m_Layer: 0
-  m_Name: Column (4)
+  m_Name: Thruster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
