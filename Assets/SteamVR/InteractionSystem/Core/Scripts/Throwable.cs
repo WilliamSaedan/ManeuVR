@@ -23,13 +23,7 @@ namespace Valve.VR.InteractionSystem
         [Tooltip("The local point which acts as a positional and rotational offset to use while held")]
         public Transform attachmentOffset;
 
-        [Tooltip("The grabbed object will stay attached until a grab action is finished")]
-        public bool detachOnGrabLeave = true;
-
-        [Tooltip("Drop the object with this action (If null, object will be dropped on grab end)")]
-        public SteamVR_Action_Boolean dropAction;
-
-        [Tooltip( "How fast must this object be moving to attach due to a trigger hold instead of a trigger press? (-1 to disable)" )]
+		[Tooltip( "How fast must this object be moving to attach due to a trigger hold instead of a trigger press? (-1 to disable)" )]
         public float catchingSpeedThreshold = -1;
 
         public ReleaseStyle releaseVelocityStyle = ReleaseStyle.GetFromHand;
@@ -42,9 +36,7 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "When detaching the object, should it return to its original parent?" )]
 		public bool restoreOriginalParent = false;
 
-        public bool attachEaseIn = false;
-		public AnimationCurve snapAttachEaseInCurve = AnimationCurve.EaseInOut( 0.0f, 0.0f, 1.0f, 1.0f );
-		public float snapAttachEaseInTime = 0.15f;
+        
 
 		protected VelocityEstimator velocityEstimator;
         protected bool attached = false;
@@ -54,20 +46,18 @@ namespace Valve.VR.InteractionSystem
         protected Transform attachEaseInTransform;
 
 		public UnityEvent onPickUp;
-		public UnityEvent onDetachFromHand;
+        public UnityEvent onDetachFromHand;
+        public UnityEvent<Hand> onHeldUpdate;
 
-		public bool snapAttachEaseInCompleted = false;
         
         protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
-        private bool allowPickUp = true;
-
         protected new Rigidbody rigidbody;
+
         [HideInInspector]
         public Interactable interactable;
-        [HideInInspector]
-        public bool IsThrown { get; private set; }
 
+        public bool IsThrown { get; private set; }
 
 
         //-------------------------------------------------
@@ -76,10 +66,7 @@ namespace Valve.VR.InteractionSystem
 			velocityEstimator = GetComponent<VelocityEstimator>();
             interactable = GetComponent<Interactable>();
 
-			if ( attachEaseIn )
-			{
-				attachmentFlags &= ~Hand.AttachmentFlags.SnapOnAttach;
-			}
+
 
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.maxAngularVelocity = 50.0f;
@@ -87,7 +74,8 @@ namespace Valve.VR.InteractionSystem
 
             if(attachmentOffset != null)
             {
-                interactable.handFollowTransform = attachmentOffset;
+                // remove?
+                //interactable.handFollowTransform = attachmentOffset;
             }
 
 		}
@@ -107,7 +95,7 @@ namespace Valve.VR.InteractionSystem
 
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
-                if ( bestGrabType != GrabTypes.None && allowPickUp)
+                if ( bestGrabType != GrabTypes.None )
 				{
 					if (rigidbody.velocity.magnitude >= catchingThreshold)
 					{
@@ -136,7 +124,7 @@ namespace Valve.VR.InteractionSystem
         {
             GrabTypes startingGrabType = hand.GetGrabStarting();
             
-            if (startingGrabType != GrabTypes.None && allowPickUp)
+            if (startingGrabType != GrabTypes.None)
             {
 				hand.AttachObject( gameObject, startingGrabType, attachmentFlags, attachmentOffset );
                 hand.HideGrabHint();
@@ -146,11 +134,13 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void OnAttachedToHand( Hand hand )
 		{
-            //Debug.Log("Pickup: " + hand.GetGrabStarting().ToString());
+            //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
 
             hadInterpolation = this.rigidbody.interpolation;
 
             attached = true;
+
+            IsThrown = false;
 
 			onPickUp.Invoke();
 
@@ -164,12 +154,6 @@ namespace Valve.VR.InteractionSystem
 			attachPosition = transform.position;
 			attachRotation = transform.rotation;
 
-			if ( attachEaseIn )
-			{
-                attachEaseInTransform = hand.objectAttachmentPoint;
-			}
-
-			snapAttachEaseInCompleted = false;
 		}
 
 
@@ -198,6 +182,9 @@ namespace Valve.VR.InteractionSystem
 
         public virtual void GetReleaseVelocities(Hand hand, out Vector3 velocity, out Vector3 angularVelocity)
         {
+            if (hand.noSteamVRFallbackCamera && releaseVelocityStyle != ReleaseStyle.NoChange)
+                releaseVelocityStyle = ReleaseStyle.ShortEstimation; // only type that works with fallback hand is short estimation.
+
             switch (releaseVelocityStyle)
             {
                 case ReleaseStyle.ShortEstimation:
@@ -223,27 +210,12 @@ namespace Valve.VR.InteractionSystem
                 velocity *= scaleReleaseVelocity;
         }
 
-
         //-------------------------------------------------
         protected virtual void HandAttachedUpdate(Hand hand)
         {
-            if (attachEaseIn)
-            {
-                float t = Util.RemapNumberClamped(Time.time, attachTime, attachTime + snapAttachEaseInTime, 0.0f, 1.0f);
-                if (t < 1.0f)
-                {
-                    t = snapAttachEaseInCurve.Evaluate(t);
-                    transform.position = Vector3.Lerp(attachPosition, attachEaseInTransform.position, t);
-                    transform.rotation = Quaternion.Lerp(attachRotation, attachEaseInTransform.rotation, t);
-                }
-                else if (!snapAttachEaseInCompleted)
-                {
-                    gameObject.SendMessage("OnThrowableAttachEaseInCompleted", hand, SendMessageOptions.DontRequireReceiver);
-                    snapAttachEaseInCompleted = true;
-                }
-            }
 
-            if (hand.IsGrabEnding(this.gameObject) && detachOnGrabLeave)
+
+            if (hand.IsGrabEnding(this.gameObject))
             {
                 hand.DetachObject(gameObject, restoreOriginalParent);
 
@@ -255,10 +227,9 @@ namespace Valve.VR.InteractionSystem
                 // to teleport behind the hand when the player releases it.
                 //StartCoroutine( LateDetach( hand ) );
             }
-            else if (dropAction != null && dropAction.GetStateDown(hand.handType))
-            {
-                hand.DetachObject(gameObject, restoreOriginalParent);
-            }
+
+            if (onHeldUpdate != null)
+                onHeldUpdate.Invoke(hand);
         }
 
 
@@ -285,16 +256,7 @@ namespace Valve.VR.InteractionSystem
 			gameObject.SetActive( false );
 			velocityEstimator.FinishEstimatingVelocity();
 		}
-
-        private IEnumerator grabDelay()
-        {
-            allowPickUp = false;
-
-            yield return new WaitForSeconds(0.25f);
-
-            allowPickUp = true;
-        }
-    }
+	}
 
     public enum ReleaseStyle
     {
@@ -303,5 +265,4 @@ namespace Valve.VR.InteractionSystem
         ShortEstimation,
         AdvancedEstimation,
     }
-
 }

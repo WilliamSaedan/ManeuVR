@@ -14,9 +14,8 @@ namespace Valve.VR.InteractionSystem
 	public class BodyCollider : MonoBehaviour
 	{
 		public Transform head;
-        public float Height { get; private set; }
 
-        private CapsuleCollider[] capsuleCollider;
+		private CapsuleCollider[] capsuleCollider;
 
 		//-------------------------------------------------
 		void Awake()
@@ -29,12 +28,11 @@ namespace Valve.VR.InteractionSystem
 		void FixedUpdate()
 		{
 			float distanceFromFloor = Vector3.Dot( head.localPosition, Vector3.up );
-            foreach (CapsuleCollider collider in capsuleCollider){
+            foreach (CapsuleCollider collider in capsuleCollider)
+            {
                 collider.height = Mathf.Max((collider.radius * 2), distanceFromFloor);
-                Height = collider.height;
             }
-            transform.localPosition = new Vector3(head.localPosition.x, ((capsuleCollider[0].height / 2.0f)-capsuleCollider[0].center.y), head.localPosition.z);
-		}
-
-    }
+            transform.localPosition = new Vector3(head.localPosition.x, ((capsuleCollider[0].height / 2.0f) - capsuleCollider[0].center.y), head.localPosition.z);
+        }
+	}
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 public class Climbing : MonoBehaviour
@@ -12,7 +11,6 @@ public class Climbing : MonoBehaviour
     private Hand hand;
     private Interactable interactable;
     private Vector3 handMotionRef;
-    private SteamVR_Behaviour_Boolean caller;
 
     void OnEnable()
     {
@@ -20,41 +18,35 @@ public class Climbing : MonoBehaviour
         if (playerBody == null)
         {
             playerBody = player.GetComponent<Rigidbody>();
+            Debug.Log(playerBody);
         }
         playerVelocity = player.GetComponent<VelocityEstimator>();
-        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
+        //TEMPORARY
+        hand = player.rightHand;
         interactable = this.GetComponentInParent<Interactable>();
     }
 
     public void GetReferencePoint()
     {
-        if (interactable.attachedToHand)
-        {
-            if (hand == null)
-            {
-                hand = interactable.attachedToHand;
-            }
-            //caller.ChangeInputSource(hand.handType);
-            handMotionRef = hand.transform.localPosition;
-        }
+        if (hand == null)
+            hand = interactable.attachedToHand;
+        handMotionRef = hand.transform.localPosition;
     }
 
     public void OnPress()
     {
-        if (interactable.attachedToHand)
-        {
-            playerBody.useGravity = false;
-            playerBody.velocity = Vector3.zero;
-            playerBody.transform.position += handMotionRef - hand.transform.localPosition;
-        }
+        playerBody.useGravity = false;
+        playerBody.velocity = Vector3.zero;
+        //playerBody.transform.position = Vector3.MoveTowards(playerBody.transform.position , playerBody.transform.position + (handMotionRef - hand.transform.localPosition), 10f*Time.deltaTime);
+        Debug.Log("why?" + (handMotionRef - hand.transform.localPosition));
+        player.transform.position += handMotionRef - hand.transform.localPosition;
+        Debug.Log("why?" + (handMotionRef - hand.transform.localPosition));
     }
 
     public void OnPressUp()
     {
-        if (interactable.attachedToHand)
-        {
-            playerBody.useGravity = true;
-            playerBody.velocity = playerVelocity.GetVelocityEstimate();
-        }
+        playerBody.useGravity = true;
+        Debug.Log("why?" + (handMotionRef - hand.transform.localPosition));
+        playerBody.velocity = playerVelocity.GetVelocityEstimate();
     }
 }

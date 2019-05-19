@@ -292,7 +292,7 @@ MonoBehaviour:
   attachmentFlags: 136
   attachmentOffset: {fileID: 0}
   detachOnGrabLeave: 0
-  dropAction: {fileID: 11400000, guid: 0d5f8d56c9aa1744ab7cda4e55c22b6b, type: 2}
+  dropAction: {fileID: 11400000, guid: 889fa3b4b464c144eabdde765ca6154c, type: 2}
   denyGrabOnAttach: 0
   restoreOriginalParent: 0
   attachEaseIn: 1

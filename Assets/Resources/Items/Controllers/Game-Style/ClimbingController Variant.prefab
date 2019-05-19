@@ -83,7 +83,7 @@ PrefabInstance:
         type: 3}
       propertyPath: activateActionSetOnAttach
       value: 
-      objectReference: {fileID: 11400000, guid: b0121d0d8d59d7e4a8c8d0cea1c1bbb3,
+      objectReference: {fileID: 11400000, guid: 389eb4686c3403d48819941a8db78d2e,
         type: 2}
     - target: {fileID: 4523093663956182481, guid: 8b4a3facee7c38348b80f91318a51439,
         type: 3}
@@ -109,7 +109,7 @@ PrefabInstance:
         type: 3}
       propertyPath: booleanAction
       value: 
-      objectReference: {fileID: 11400000, guid: 3c170a8ae3be74346b1c64d617a95577,
+      objectReference: {fileID: 11400000, guid: 3a5f881431b3f944a8c2946fd16aa27f,
         type: 2}
     - target: {fileID: 4523093663956182481, guid: 8b4a3facee7c38348b80f91318a51439,
         type: 3}

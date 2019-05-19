@@ -16,7 +16,6 @@ public class TeleportBall : MonoBehaviour
     private Interactable interactable;
     private Player player;
     private bool spawned;
-    private SteamVR_Behaviour_Boolean caller;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -27,7 +26,6 @@ public class TeleportBall : MonoBehaviour
             playerBody = player.GetComponent<Rigidbody>();
         }
         interactable = this.GetComponentInParent<Interactable>();
-        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
         //TEMPORARY
         //throwHand = this.GetComponentInParent<Hand>();
     }
@@ -36,22 +34,18 @@ public class TeleportBall : MonoBehaviour
     {
         if (throwHand == null)
             throwHand = interactable.attachedToHand;
-        //if (throwHand != null)
-        //    caller.ChangeInputSource(throwHand.handType);
     }
 
     // Update is called once per frame
     public void OnPressDown()
     {
-        if (interactable.attachedToHand) {
-            if (!spawned)
-            {
-                StartCoroutine(DoSpawn());
-            }
-            else
-            {
-                StartCoroutine(Despawn());
-            }
+        if (!spawned)
+        {
+            StartCoroutine(DoSpawn());
+        }
+        else
+        {
+            StartCoroutine(Despawn());
         }
     }
 

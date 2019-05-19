@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -22,7 +21,6 @@ public class PointFollow : MonoBehaviour
     private bool canMove = false;
     private bool moved = false;
     private LineRenderer line;
-    private SteamVR_Behaviour_Boolean caller;
 
     public float playerSpeed = 100f;
     public float maxDistance = Mathf.Infinity;
@@ -37,7 +35,6 @@ public class PointFollow : MonoBehaviour
             playerBody = player.GetComponent<Rigidbody>();
         }
         interactable = this.GetComponentInParent<Interactable>();
-        caller = this.GetComponent<SteamVR_Behaviour_Boolean>();
         line = this.GetComponent<LineRenderer>();
         line.enabled = false;
         Vector3 endpoint = maxDistance > 100f ? Vector3.up * 100f : Vector3.up * maxDistance;
@@ -47,22 +44,16 @@ public class PointFollow : MonoBehaviour
 
     public void OnPressDown()
     {
-        if (interactable.attachedToHand)
-        {
-            canMove = Physics.Raycast(this.transform.position + this.transform.up / 3, this.transform.up, out hitInfo, maxDistance);
-            line.enabled = true;
-        }
+        canMove = Physics.Raycast(this.transform.position + this.transform.up/3, this.transform.up, out hitInfo, maxDistance);
+        line.enabled = true;
     }
 
     public void OnPress()
     {
-        if (interactable.attachedToHand)
+        if ( canMove )
         {
-            if (canMove)
-            {
-                playerBody.velocity = Vector3.Normalize(hitInfo.point - this.transform.position) * playerSpeed * Time.deltaTime;
-                moved = false;
-            }
+            playerBody.velocity = Vector3.Normalize(hitInfo.point - this.transform.position) * playerSpeed * Time.deltaTime;
+            moved = false;
         }
     }
 
@@ -78,11 +69,8 @@ public class PointFollow : MonoBehaviour
 
     public void AssignController()
     {
-        if (hand == null || hand != interactable.attachedToHand)
-        {
+        if (hand == null)
             hand = interactable.attachedToHand;
-        }
-        //caller.ChangeInputSource(hand.handType);
     }
 
     private IEnumerator SlowSpeed()
