@@ -1,0 +1,171 @@
+{
+  "actions": [
+    {
+      "name": "/actions/default/in/InteractUI",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Teleport",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/GrabPinch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/GrabGrip",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Pose",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/default/in/SkeletonLeftHand",
+      "type": "skeleton",
+      "skeleton": "/skeleton/hand/left"
+    },
+    {
+      "name": "/actions/default/in/SkeletonRightHand",
+      "type": "skeleton",
+      "skeleton": "/skeleton/hand/right"
+    },
+    {
+      "name": "/actions/default/in/Squeeze",
+      "type": "vector1",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/Spawn",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Detach",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/out/Haptic",
+      "type": "vibration"
+    },
+    {
+      "name": "/actions/platformer/in/Move",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/platformer/in/Jump",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/platformer/in/GrabPinch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/teleportBall/in/Spawn",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/teleportBall/in/Teleport",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/sliding/in/SlideAction",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/pointFollow/in/PointAction",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/thruster/in/Boost",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/climbing/in/ClimbAction",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/touchpad/in/TouchAction",
+      "type": "vector2"
+    }
+  ],
+  "action_sets": [
+    {
+      "name": "/actions/default",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/platformer",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/teleportBall",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/sliding",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/pointFollow",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/thruster",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/climbing",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/touchpad",
+      "usage": "single"
+    }
+  ],
+  "default_bindings": [
+    {
+      "controller_type": "vive_controller",
+      "binding_url": "bindings_vive_controller.json"
+    },
+    {
+      "controller_type": "oculus_touch",
+      "binding_url": "bindings_oculus_touch.json"
+    },
+    {
+      "controller_type": "knuckles",
+      "binding_url": "bindings_knuckles.json"
+    },
+    {
+      "controller_type": "holographic_controller",
+      "binding_url": "bindings_holographic_controller.json"
+    }
+  ],
+  "localization": [
+    {
+      "language_tag": "en_US",
+      "/actions/default/in/InteractUI": "Interact With UI",
+      "/actions/default/in/Teleport": "Teleport",
+      "/actions/default/in/GrabPinch": "Grab Pinch",
+      "/actions/default/in/GrabGrip": "Grab Grip",
+      "/actions/default/in/SkeletonLeftHand": "Skeleton (Left)",
+      "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
+      "/actions/default/in/Pose": "Pose",
+      "/actions/default/out/Haptic": "Haptic",
+      "/actions/buggybuddy/in/Steering": "Steering",
+      "/actions/buggybuddy/in/Throttle": "Throttle",
+      "/actions/buggybuddy/in/Brake": "Brake",
+      "/actions/buggybuddy/in/Reset": "Reset",
+      "/actions/platformer/in/Move": "Move",
+      "/actions/platformer/in/Jump": "Jump",
+      "/actions/platformer/in/GrabPinch": "Grab Pinch",
+      "/actions/teleportBall/in/Spawn": "Spawn",
+      "/actions/teleportBall/in/Teleport": "Teleport",
+      "/actions/Climbing/in/MoveAction": "MoveAction",
+      "/actions/Sliding/in/SlideAction": "SlideAction",
+      "/actions/pointFollow/in/PointAction": "PointAction",
+      "/actions/climbing/in/climbAction": "climbAction",
+      "/actions/sliding/in/SlideAction": "SlideAction",
+      "/actions/climbing/in/ClimbingAction": "ClimbingAction"
+    }
+  ]
+}
